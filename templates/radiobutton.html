@@ -1,0 +1,10 @@
+<html>
+    <body>
+        <form action="/info" method="GET">
+            {% for n in tabella %}
+                <p><input type="radio" name="id" value="{{n}}">{{n}}</p>
+            {%endfor%}
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>
