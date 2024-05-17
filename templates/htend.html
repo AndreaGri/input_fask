@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>
+            Regioni
+        </title>
+    </head>
+    <body>
+        
+        <form action="/ret" method="GET">
+            <fieldset>
+                <legend>Regioni</legend>
+                <select name="regione">
+                    {% for r in tab%}
+                    <option value="{{r}}" >{{r}}</option>
+                    {%endfor%}
+                </select>
+            </fieldset>
+            <input type="submit">
+        </form>
+    </body>
+</html>

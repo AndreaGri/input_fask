@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request , jsonify
 app = Flask(__name__)
 
 @app.route('/')
@@ -16,6 +16,20 @@ def search():
     else:
         table = list(risultato)
     return render_template('radiobutton.html', tabella = table)
+
+
+@app.route('/info', methods = ['GET'])
+def info():
+    id = int(request.args['id'])
+    dati_regioni = pd.read_csv('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-statistici-riferimento/popolazione-istat-regione-range.csv')
+    risultato = dati_regioni.iloc[[id]]
+    if len(risultato) == 0:
+        table = 'Regione non trovata'
+    else:
+        table = risultato.to_html()
+    return render_template('tabella.html', tabella = table)
+
+
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
